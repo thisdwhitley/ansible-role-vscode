@@ -23,13 +23,14 @@ script:
   # Ensure code is installed.
   - docker exec --tty ${container_id} env TERM=xterm which code
   # Ensure the extensions specified in test.yml are installed for test_user1
-  - >
-    for EXTENSION in vscoss.vscode-ansible stayfool.vscode-asciidoc \
-                     dbankier.vscode-instant-markdown wholroyd.jinja \
-                     DavidAnson.vscode-markdownlint ms-python.python \
-                     AndrsDC.base16-themes; do \
-      docker exec --tty ${container_id} env TERM=xterm sudo --user test_user1 -H code --install-extension $EXTENSION
-    done;
+  #  I toyed with some for loops here but they did not work as expected...
+  - docker exec --tty ${container_id} env TERM=xterm sudo --user test_user1 -H code --install-extension vscoss.vscode-ansible
+  - docker exec --tty ${container_id} env TERM=xterm sudo --user test_user1 -H code --install-extension stayfool.vscode-asciidoc
+  - docker exec --tty ${container_id} env TERM=xterm sudo --user test_user1 -H code --install-extension dbankier.vscode-instant-markdown
+  - docker exec --tty ${container_id} env TERM=xterm sudo --user test_user1 -H code --install-extension wholroyd.jinja
+  - docker exec --tty ${container_id} env TERM=xterm sudo --user test_user1 -H code --install-extension DavidAnson.vscode-markdownlint
+  - docker exec --tty ${container_id} env TERM=xterm sudo --user test_user1 -H code --install-extension ms-python.python
+  - docker exec --tty ${container_id} env TERM=xterm sudo --user test_user1 -H code --install-extension AndrsDC.base16-themes
   # Ensure the settings specified in test.yml are in place for test_user1
   #  I toyed with some for loops here but they did not work as expected...
   - docker exec --tty ${container_id} env TERM=xterm stat /home/test_user1/.config/Code/User/settings.json
