@@ -1,15 +1,14 @@
 ---
 - name: do these tasks for RedHat-y systems
   block:
-    - name: extensions| install extension cli dependencies for Red Hat
+    - name: extensions| install extension cli dependencies for Fedora
       become: yes
       package:
         name: "{{ item }}"
         state: present
       with_items:
-        - which
         - libX11-xcb
-  when: ansible_os_family == "RedHat"
+  when: ansible_distribution == "Fedora"
 
 - name: do these tasks for Debian-y systems
   block:
