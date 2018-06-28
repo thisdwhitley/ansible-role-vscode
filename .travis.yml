@@ -23,7 +23,15 @@ script:
   - ${PWD}/tests/test.sh
 
   # Ensure code is installed.
-  - 'docker exec --tty ${container_id} env TERM=xterm which code'
+  - docker exec --tty ${container_id} env TERM=xterm which code
+  # Ensure the extensions specified in test.yml are installed for test_user1
+  - >
+    for EXTENSION in vscoss.vscode-ansible stayfool.vscode-asciidoc \
+                     dbankier.vscode-instant-markdown wholroyd.jinja \
+                     DavidAnson.vscode-markdownlint ms-python.python \
+                     AndrsDC.base16-themes; do \
+      docker exec --tty ${container_id} env TERM=xterm sudo --user test_user1 -H code --install-extension $EXTENSION
+    done;
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
