@@ -64,7 +64,7 @@ Playbook with configuration options specified:
   roles:
     - role: vscode
       users:
-        - username: vagrant
+        - username: test_user1
           vscode_extensions:
             - vscoss.vscode-ansible
             - stayfool.vscode-asciidoc
@@ -102,6 +102,23 @@ you to "install" it (prior to use in some sort of setup script?) with:
 ```bash
 ansible-galaxy install -p ./roles -r requirements.yml
 ```
+
+Testing
+-------
+
+I am relying heavily on the work by Jeff Geerling in using Travis CI for testing
+this role.  I have, however, modified both `tests/test.yml` and `.travis.yml` in
+order to include testing of the installation of extensions as well as config
+changes.  Please review those files, but here is a list of OSes currently being
+tested (using geerlingguy's container images):
+
+* centos7
+* fedora27
+* ubuntu1804
+* ubuntu1604
+* debian9
+
+Reference:  [How I test Ansible configuration on 7 different OSes with Docker](https://www.jeffgeerling.com/blog/2018/how-i-test-ansible-configuration-on-7-different-oses-docker)
 
 To-do
 -----
