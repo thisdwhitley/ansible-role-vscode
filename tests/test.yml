@@ -11,7 +11,7 @@
       when: ansible_os_family == 'RedHat'
 
   roles:
-    - role_under_test
+    - role: role_under_test
       users:
         - username: vagrant
           vscode_extensions:
