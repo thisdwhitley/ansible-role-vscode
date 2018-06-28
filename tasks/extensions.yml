@@ -35,7 +35,7 @@
     mode: 'u=rwx,go=r'
   with_subelements:
     - "{{ users }}"
-    - visual_studio_code_extensions
+    - vscode_extensions
     - skip_missing: yes
 
 - name: extensions| create Visual Studio Code directories for users
@@ -48,7 +48,7 @@
     mode: 'u=rwx,go='
   with_subelements:
     - "{{ users }}"
-    - visual_studio_code_extensions
+    - vscode_extensions
     - skip_missing: yes
 
 - name: extensions| install extensions
@@ -57,7 +57,7 @@
   command: "code --install-extension '{{ item.1 }}'"
   with_subelements:
     - "{{ users }}"
-    - visual_studio_code_extensions
+    - vscode_extensions
     - skip_missing: yes
   register: vscode_result
   changed_when: "'already installed' not in vscode_result.stdout"

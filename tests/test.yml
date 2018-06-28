@@ -38,6 +38,6 @@
             }
           }
         - username: test_user2
-          visual_studio_code_extensions: []
-          visual_studio_code_settings: {}
+          vscode_extensions: []
+          vscode_settings: {}
         - username: test_user3
