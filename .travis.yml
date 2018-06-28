@@ -32,10 +32,11 @@ script:
     done;
   # Ensure the settings specified in test.yml are in place for test_user1
   - docker exec --tty ${container_id} env TERM=xterm stat /home/test_user1/.config/Code/User/settings.json
+  - >
+    docker exec --tty ${container_id} env TERM=xterm "for CONFIG in ruler Whitespace association; do grep $CONFIG /home/test_user1/.config/Code/User/settings.json; done"
   - docker exec --tty ${container_id} env TERM=xterm grep ruler /home/test_user1/.config/Code/User/settings.json
-  - docker exec --tty ${container_id} env TERM=xterm grep whitespace /home/test_user1/.config/Code/User/settings.json
-  - docker exec --tty ${container_id} env TERM=xterm \
-      grep association /home/test_user1/.config/Code/User/settings.json
+  - docker exec --tty ${container_id} env TERM=xterm grep Whitespace /home/test_user1/.config/Code/User/settings.json
+  - docker exec --tty ${container_id} env TERM=xterm grep association /home/test_user1/.config/Code/User/settings.json
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
