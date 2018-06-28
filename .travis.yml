@@ -22,7 +22,7 @@ script:
   # Run tests.
   - ${PWD}/tests/test.sh
 
-  # Ensure Java is installed.
+  # Ensure code is installed.
   - 'docker exec --tty ${container_id} env TERM=xterm which code'
 
 notifications:
