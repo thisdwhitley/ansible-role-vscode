@@ -1,0 +1,4 @@
+---
+# the main.yml file will simply be used to include necessary other task files
+
+- include_tasks: install.yml
