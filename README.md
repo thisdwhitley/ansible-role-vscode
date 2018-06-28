@@ -10,8 +10,8 @@ distributions (per
 
 * Red Hat/CentOS 7+
 * Fedora 24+
-* Debian 7+
-* Ubuntu 14.04+
+* Debian 9+
+* Ubuntu 16.04+
 
 I prefer to pass the variables "into" the role from the playbook versus by
 including variable files.  This is because I hope to make the role usable by
