@@ -3,10 +3,13 @@ Ansible Role: vscode
 
 This role will install and potentially configure the *open source* [Visual
 Studio Code](https://code.visualstudio.com/) editor.  Currently supported
-distributions:
+distributions (per
+[requirements](https://code.visualstudio.com/docs/supporting/requirements)):
 
-* Red Hat/CentOS/Fedora
-* Debian/Ubuntu
+* Red Hat/CentOS 7+
+* Fedora 24+
+* Debian 7+
+* Ubuntu 14.04+
 
 I prefer to pass the variables "into" the role from the playbook versus by
 including variable files.  This is because I hope to make the role usable by
