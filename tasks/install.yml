@@ -33,7 +33,7 @@
       apt_repository:
         repo: deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main
         state: present
-  when: ansible_os_family == "Ubuntu"
+  when: ansible_os_family == "Debian"
 
 - name: install| install from repo
   become: true
