@@ -66,9 +66,13 @@ Playbook with configuration options specified:
       users:
         - username: vagrant
           vscode_extensions:
-            - streetsidesoftware.code-spell-checker
+            - vscoss.vscode-ansible
+            - stayfool.vscode-asciidoc
+            - dbankier.vscode-instant-markdown
             - wholroyd.jinja
-            - donjayamanne.python
+            - DavidAnson.vscode-markdownlint
+            - ms-python.python
+            - AndrsDC.base16-themes
           vscode_settings: {
             "editor.rulers": [80, 100, 120],
             "editor.renderWhitespace": true,
