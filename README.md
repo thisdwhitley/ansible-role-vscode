@@ -13,18 +13,18 @@ including variable files.  This is because I hope to make the role usable by
 other projects/roles.  I don't know if this logic makes sense or not, but I am
 essentially attempting to remove the variables from the role itself.
 
-There is not currently a repository for the package installation. Instead of
-making this role version-specific, it will always install the latest version
-found here:
-[https://code.visualstudio.com/Download](https://code.visualstudio.com/Download)
+This will be installed via a repository and therefore updated similarly so the
+exact version does not need to be specified.  Previously I was unaware of this
+but I will be adhering to the guidelines here:
+[Running VS Code on Linux](https://code.visualstudio.com/docs/setup/linux)
 
 Important Notes
 ---------------
 
 * This role started totally differently.  But in using `code` regularly, I have
   found that updates come often and that it is not worth updating the role for
-  each new version, but rather simply accept a specific version to install *OR*
-  just install the latest version.  
+  each new version.  So this role will install whatever version is in the
+  repository (knowing that it might not be the absolute latest).
 * This is also my first foray into using Travis for CI
 
 Requirements
@@ -39,10 +39,6 @@ Role Variables
 All of these variables should be considered **optional** however, be aware that
 sanity checking is minimal (if at all):
 
-* `vscode_version`
-  * this allows you to specify a version, but if it is not latest, you will be
-    reminded incessantly that there is a newer version avaible, so I usually
-    don't specify a version
 * `users` *ideally you could configure Visual Studio Code differently per user,
   and this nested list of users allows for that*
   * `username`
