@@ -30,6 +30,12 @@ script:
                      AndrsDC.base16-themes; do \
       docker exec --tty ${container_id} env TERM=xterm sudo --user test_user1 -H code --install-extension $EXTENSION
     done;
+  # Ensure the settings specified in test.yml are in place for test_user1
+  - docker exec --tty ${container_id} env TERM=xterm stat /home/test_user1/.config/Code/User/settings.json
+  - >
+    for CONFIG in rule whitespace association; do \
+      docker exec --tty ${container_id} env TERM=xterm grep $CONFIG /home/test_user1/.config/Code/User/settings.json
+    done;
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
