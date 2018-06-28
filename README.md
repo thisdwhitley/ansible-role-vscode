@@ -65,11 +65,11 @@ Playbook with configuration options specified:
     - role: vscode
       users:
         - username: vagrant
-          visual_studio_code_extensions:
+          vscode_extensions:
             - streetsidesoftware.code-spell-checker
             - wholroyd.jinja
             - donjayamanne.python
-          visual_studio_code_settings: {
+          vscode_settings: {
             "editor.rulers": [80, 100, 120],
             "editor.renderWhitespace": true,
             "files.associations": {
