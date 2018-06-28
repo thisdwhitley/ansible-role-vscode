@@ -10,8 +10,8 @@ distributions (per
 
 * Red Hat/CentOS 7+
 * Fedora 24+
-* Debian 7+
-* Ubuntu 14.04+
+* Debian 9+
+* Ubuntu 16.04+
 
 I prefer to pass the variables "into" the role from the playbook versus by
 including variable files.  This is because I hope to make the role usable by
@@ -64,11 +64,15 @@ Playbook with configuration options specified:
   roles:
     - role: vscode
       users:
-        - username: vagrant
+        - username: test_user1
           vscode_extensions:
-            - streetsidesoftware.code-spell-checker
+            - vscoss.vscode-ansible
+            - stayfool.vscode-asciidoc
+            - dbankier.vscode-instant-markdown
             - wholroyd.jinja
-            - donjayamanne.python
+            - DavidAnson.vscode-markdownlint
+            - ms-python.python
+            - AndrsDC.base16-themes
           vscode_settings: {
             "editor.rulers": [80, 100, 120],
             "editor.renderWhitespace": true,
@@ -98,6 +102,23 @@ you to "install" it (prior to use in some sort of setup script?) with:
 ```bash
 ansible-galaxy install -p ./roles -r requirements.yml
 ```
+
+Testing
+-------
+
+I am relying heavily on the work by Jeff Geerling in using Travis CI for testing
+this role.  I have, however, modified both `tests/test.yml` and `.travis.yml` in
+order to include testing of the installation of extensions as well as config
+changes.  Please review those files, but here is a list of OSes currently being
+tested (using geerlingguy's container images):
+
+* centos7
+* fedora27
+* ubuntu1804
+* ubuntu1604
+* debian9
+
+Reference:  [How I test Ansible configuration on 7 different OSes with Docker](https://www.jeffgeerling.com/blog/2018/how-i-test-ansible-configuration-on-7-different-oses-docker)
 
 To-do
 -----
