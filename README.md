@@ -15,7 +15,7 @@ essentially attempting to remove the variables from the role itself.
 
 There is not currently a repository for the package installation. Instead of
 making this role version-specific, it will always install the latest version
-found here:  
+found here:
 [https://code.visualstudio.com/Download](https://code.visualstudio.com/Download)
 
 Important Notes
