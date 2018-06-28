@@ -2,11 +2,11 @@
 - hosts: all
 
   pre_tasks:
-    - name: Update apt cache.
-      apt: update_cache=yes
+    - name: Update apt cache
+      apt: update_cache=yes cache_valid_time=300
       when: ansible_os_family == 'Debian'
 
-    - name: Ensure build dependencies are installed (RedHat).
+    - name: Ensure build dependencies are installed (RedHat)
       package: name=which state=present
       when: ansible_os_family == 'RedHat'
 
