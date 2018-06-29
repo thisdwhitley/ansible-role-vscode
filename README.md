@@ -1,7 +1,5 @@
-Ansible Role: vscode
-====================
-
-[![Build Status](https://travis-ci.com/dswhitley/ansible-role-vscode.svg?branch=master)](https://travis-ci.com/dswhitley/ansible-role-vscode)
+Ansible Role: vscode [![Build Status](https://travis-ci.com/dswhitley/ansible-role-vscode.svg?branch=master)](https://travis-ci.com/dswhitley/ansible-role-vscode)
+=====================================
 
 This role will install and potentially configure the *open source* [Visual
 Studio Code](https://code.visualstudio.com/) editor.  Currently supported
