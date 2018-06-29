@@ -90,7 +90,7 @@ I envision this role being included in a larger project through the use of a
 file:
 
 ```yaml
-# get the builder role from gitlab
+# get the vscode role from gitlab
 - src: https://github.com/dswhitley/ansible-role-vscode.git
   scm: git
   name: vscode
