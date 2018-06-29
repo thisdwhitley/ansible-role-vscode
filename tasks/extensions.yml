@@ -1,0 +1,62 @@
+---
+- name: do these tasks for RedHat-y systems
+  block:
+    - name: extensions| install extension cli dependencies for Fedora
+      become: yes
+      package:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - libX11-xcb
+  when: ansible_distribution == "Fedora"
+
+- name: do these tasks for Debian-y systems
+  block:
+    - name: extensions| install extension cli dependencies for Debian
+      become: yes
+      package:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - gconf2
+        - libasound2
+        - libgtk2.0-0
+        - libxss1
+  when: ansible_os_family == "Debian"
+
+- name: extensions| create config directories for users
+  become: yes
+  file:
+    path: "~{{ item.0.username }}/.config"
+    state: directory
+    owner: "{{ item.0.username }}"
+    group: "{{ item.0.username }}"
+    mode: 'u=rwx,go=r'
+  with_subelements:
+    - "{{ users }}"
+    - vscode_extensions
+    - skip_missing: yes
+
+- name: extensions| create Visual Studio Code directories for users
+  become: yes
+  file:
+    path: "~{{ item.0.username }}/.config/Code/User"
+    state: directory
+    owner: "{{ item.0.username }}"
+    group: "{{ item.0.username }}"
+    mode: 'u=rwx,go='
+  with_subelements:
+    - "{{ users }}"
+    - vscode_extensions
+    - skip_missing: yes
+
+- name: extensions| install extensions
+  become: yes
+  become_user: "{{ item.0.username }}"
+  command: "code --install-extension '{{ item.1 }}'"
+  with_subelements:
+    - "{{ users }}"
+    - vscode_extensions
+    - skip_missing: yes
+  register: vscode_result
+  changed_when: "'already installed' not in vscode_result.stdout"
