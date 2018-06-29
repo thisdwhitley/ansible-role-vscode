@@ -39,4 +39,4 @@
   become: true
   package:
     name: code
-    state: present
+    state: latest
