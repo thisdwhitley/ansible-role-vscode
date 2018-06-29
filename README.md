@@ -1,7 +1,7 @@
 Ansible Role: vscode
 ====================
 
-[![Build Status](https://travis-ci.org/dswhitley/ansible-role-vscode.svg?branch=master)](https://travis-ci.com/dswhitley/ansible-role-vscode)
+[![Build Status](https://travis-ci.com/dswhitley/ansible-role-vscode.svg?branch=master)](https://travis-ci.com/dswhitley/ansible-role-vscode)
 
 This role will install and potentially configure the *open source* [Visual
 Studio Code](https://code.visualstudio.com/) editor.  Currently supported
@@ -129,6 +129,8 @@ References
 ----------
 
 * [GantSign's role](https://github.com/gantsign/ansible-role-visual-studio-code)
+* [Running VS Code on Linux](https://code.visualstudio.com/docs/setup/linux)
+* [How I test Ansible configuration on 7 different OSes with Docker](https://www.jeffgeerling.com/blog/2018/how-i-test-ansible-configuration-on-7-different-oses-docker)
 
 License
 -------
