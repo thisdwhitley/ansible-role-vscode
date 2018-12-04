@@ -40,12 +40,14 @@
     name: flatpak
     state: present
 
-- name: install| install flatpak repo
+- name: install| install flatpak repo (FIX THIS)
   become: true
-  flatpak_remote:
-    name: flathub
-    state: present
-    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+  command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  # https://github.com/ansible/ansible/pull/48049
+  # flatpak_remote:
+  #   name: flathub
+  #   state: present
+  #   flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
 
 - name: install| install the flatpak
   become: true
