@@ -1,42 +1,46 @@
 ---
 # this will be installed via repo, so config repo and install
 
-- name: do these tasks for RedHat-y systems
-  block:
-    - name: install|rpm| add the repository
-      become: true
-      yum_repository:
-        name: vscode
-        description: Visual Studio Code
-        baseurl: https://packages.microsoft.com/yumrepos/vscode
-        enabled: yes
-        gpgcheck: yes
-        gpgkey: https://packages.microsoft.com/keys/microsoft.asc
-        skip_if_unavailable: yes
-  when: ansible_os_family == "RedHat"
+# - name: do these tasks for RedHat-y systems
+#   block:
+#     - name: install|redhat| install flatpak
+#       become: true
+#       package:
+#         name: flatpak
+#         state: present
+#   when: ansible_os_family == "RedHat"
 
 - name: do these tasks for Ubuntu-y systems
   block:
     - name: install|deb| install the https method driver for apt
       become: true
       apt:
-        name: apt-transport-https
+        name: "{{ item }}"
         state: present
         update_cache: yes
-    - name: install|deb| add the apt key
-      become: true
-      apt_key:
-        url: https://packages.microsoft.com/keys/microsoft.asc
-        state: present
+      with_items:
+      - apt-transport-https
+      - gnome-software-plugin-flatpak
+    # - name: install|deb| add the apt key
+    #   become: true
+    #   apt_key:
+    #     url: https://packages.microsoft.com/keys/microsoft.asc
+    #     state: present
     - name: install|deb| add the apt repository
       become: true
       apt_repository:
-        repo: deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main
+        repo: ppa:alexlarsson/flatpak
         state: present
   when: ansible_os_family == "Debian"
 
-- name: install| install from repo
+- name: install| install flatpak repo
   become: true
-  package:
-    name: code
-    state: latest
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+
+- name: install| install the flatpak
+  become: true
+  flatpak:
+    name: com.visualstudio.code
