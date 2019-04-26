@@ -53,7 +53,7 @@
 - name: extensions| install extensions
   become: true
   become_user: "{{ item.0.username }}"
-  command: "code --install-extension '{{ item.1 }}'"
+  shell: echo "code --install-extension {{ item.1 }}" | flatpak run --command=bash com.visualstudio.code
   with_subelements:
     - "{{ users }}"
     - vscode_extensions
