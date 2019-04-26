@@ -1,14 +1,14 @@
 ---
-- name: config| create settings directory for {{ user }}
+- name: config| create settings directory for {{ user.username }}
   become: true
   file:
-    path: '~{{ item.username }}/.var/app/com.visualstudio.code/config/Code/User'
+    path: '~{{ user.username }}/.var/app/com.visualstudio.code/config/Code/User'
     state: directory
-    owner: '{{ item.username }}'
-    group: '{{ item.username }}'
+    owner: '{{ user.username }}'
+    group: '{{ user.username }}'
     mode: 'u=rwx,go='
 
-- name: config| write settings for {{ user }}
+- name: config| write settings for {{ user.username }}
   become: true
   template:
     src: settings.json.j2
