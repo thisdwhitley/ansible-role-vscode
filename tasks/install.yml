@@ -14,7 +14,7 @@
     state: present
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
   register: output
-  failed_when: "'already exists' not in output.stderr"
+  # failed_when: "'already exists' not in output.stderr"
 
 - name: install| install flatpak
   become: true
