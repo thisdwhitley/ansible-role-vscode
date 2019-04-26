@@ -12,7 +12,7 @@
   become: true
   template:
     src: settings.json.j2
-    dest: '~{{ item.username }}/.var/app/com.visualstudio.code/config/Code/Usersettings.json'
+    dest: '~{{ user.username }}/.var/app/com.visualstudio.code/config/Code/User/settings.json'
     force: false
     owner: '{{ user.username }}'
     group: '{{ user.username }}'
