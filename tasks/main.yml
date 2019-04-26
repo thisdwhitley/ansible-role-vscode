@@ -10,3 +10,7 @@
   when: user.vscode_extensions is defined
 
 - include_tasks: config.yml
+  with_items: "{{ users }}"
+  loop_control:
+    loop_var: user
+  when: user.vscode_settings is defined
