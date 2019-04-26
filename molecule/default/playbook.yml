@@ -1,0 +1,35 @@
+---
+- name: Converge
+  hosts: all
+  pre_tasks:
+  - name: create test users
+    become: true
+    user:
+      name: '{{ item }}'
+      state: present
+      home: '/home/{{ item }}'
+      createhome: true
+    with_items:
+      - test_usr1
+      - test_usr2
+      - test_usr3
+
+  roles:
+    - role: ansible-role-vscode
+      users:
+        - username: test_user1
+          vscode_extensions:
+            - vscoss.vscode-ansible
+            - stayfool.vscode-asciidoc
+            - dbankier.vscode-instant-markdown
+            - wholroyd.jinja
+            - DavidAnson.vscode-markdownlint
+            - ms-python.python
+            - AndrsDC.base16-themes
+          vscode_settings: {
+            "editor.rulers": [80, 100, 120],
+            "editor.renderWhitespace": true,
+            "files.associations": {
+              "Vagrantfile": "ruby"
+            }
+          }

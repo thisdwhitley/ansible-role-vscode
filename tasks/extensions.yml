@@ -2,7 +2,7 @@
 - name: do these tasks for RedHat-y systems
   block:
     - name: extensions| install extension cli dependencies for Fedora
-      become: yes
+      become: true
       package:
         name: "{{ item }}"
         state: present
@@ -13,7 +13,7 @@
 - name: do these tasks for Debian-y systems
   block:
     - name: extensions| install extension cli dependencies for Debian
-      become: yes
+      become: true
       package:
         name: "{{ item }}"
         state: present
@@ -25,7 +25,7 @@
   when: ansible_os_family == "Debian"
 
 - name: extensions| create config directories for users
-  become: yes
+  become: true
   file:
     path: "~{{ item.0.username }}/.config"
     state: directory
@@ -35,10 +35,10 @@
   with_subelements:
     - "{{ users }}"
     - vscode_extensions
-    - skip_missing: yes
+    - skip_missing: true
 
 - name: extensions| create Visual Studio Code directories for users
-  become: yes
+  become: true
   file:
     path: "~{{ item.0.username }}/.config/Code/User"
     state: directory
@@ -48,15 +48,15 @@
   with_subelements:
     - "{{ users }}"
     - vscode_extensions
-    - skip_missing: yes
+    - skip_missing: true
 
 - name: extensions| install extensions
-  become: yes
+  become: true
   become_user: "{{ item.0.username }}"
   command: "code --install-extension '{{ item.1 }}'"
   with_subelements:
     - "{{ users }}"
     - vscode_extensions
-    - skip_missing: yes
+    - skip_missing: true
   register: vscode_result
   changed_when: "'already installed' not in vscode_result.stdout"

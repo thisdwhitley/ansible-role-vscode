@@ -1,55 +1,22 @@
 ---
-# this will be installed via repo, so config repo and install
+# this will be installed via flatpak, so config flatpak repo and install
 
-# - name: do these tasks for RedHat-y systems
-#   block:
-#     - name: install|redhat| install flatpak
-#       become: true
-#       package:
-#         name: flatpak
-#         state: present
-#   when: ansible_os_family == "RedHat"
-
-- name: do these tasks for Ubuntu-y systems
-  block:
-    - name: install|deb| install the https method driver for apt
-      become: true
-      apt:
-        name: "{{ packages }}"
-        state: present
-        update_cache: yes
-      vars:
-        packages:
-          - apt-transport-https
-          - gnome-software-plugin-flatpak
-    # - name: install|deb| add the apt key
-    #   become: true
-    #   apt_key:
-    #     url: https://packages.microsoft.com/keys/microsoft.asc
-    #     state: present
-    - name: install|deb| add the apt repository
-      become: true
-      apt_repository:
-        repo: ppa:alexlarsson/flatpak
-        state: present
-  when: ansible_os_family == "Debian"
-
-- name: install| install the flatpak package
+- name: install| install the flatpak package (OS)
   become: true
   package:
     name: flatpak
     state: present
 
-- name: install| install flatpak repo (FIX THIS)
+- name: install| enable the flatpak repository
   become: true
-  command: flatpak remote-add flathub https://flathub.org/repo/flathub.flatpakrepo
-  # https://github.com/ansible/ansible/pull/48049
-  # flatpak_remote:
-  #   name: flathub
-  #   state: present
-  #   flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+  register: output
+  failed_when: "'already exists' not in output.stderr"
 
-- name: install| install the flatpak
+- name: install| install flatpak
   become: true
   flatpak:
     name: com.visualstudio.code

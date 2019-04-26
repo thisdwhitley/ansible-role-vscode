@@ -1,6 +1,6 @@
 ---
 - name: config| create settings directory
-  become: yes
+  become: true
   file:
     path: '~{{ item.username }}/.config/Code/User'
     state: directory
@@ -10,14 +10,15 @@
   with_items: '{{ users }}'
 
 - name: config| write settings
-  become: yes
+  become: true
   template:
     src: settings.json.j2
     dest: '~{{ item.username }}/.config/Code/User/settings.json'
-    force: no
+    force: false
     owner: '{{ item.username }}'
     group: '{{ item.username }}'
     mode: 'u=rw,go='
   with_items: '{{ users }}'
-  when: item.vscode_settings is defined and 
-        item.vscode_settings not in ({}, '', None, omit)
+  when:
+    - item.vscode_settings is defined
+    - item.vscode_settings not in ({}, '', None, omit)
