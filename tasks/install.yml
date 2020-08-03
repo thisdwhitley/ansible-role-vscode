@@ -19,4 +19,4 @@
 - name: install| install flatpak
   become: true
   flatpak:
-    name: com.visualstudio.code
+    name: com.vscodium.codium
