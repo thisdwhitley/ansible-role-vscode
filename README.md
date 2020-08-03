@@ -1,7 +1,4 @@
-# Ansible Role: vscodium
-
-***2020-08-03 instead of doing the responsible thing here, I'm doing the
-"easy" thing, changing this repo to use vscodium***
+# Ansible Role: vscode
 
 This role will install and potentially configure the *open source* [Visual
 Studio Code](https://code.visualstudio.com/) editor.  Currently supported
@@ -54,7 +51,7 @@ Playbook with configuration options specified:
 - hosts: localhost
   connection: local
   roles:
-    - role: vscodium
+    - role: vscode
       users:
         - username: test_user1
           vscode_extensions:
@@ -82,9 +79,9 @@ file:
 
 ```yaml
 # get the vscode role from github
-- src: https://github.com/thisdwhitley/ansible-role-vscodium.git
+- src: https://github.com/thisdwhitley/ansible-role-vscode.git
   scm: git
-  name: vscodium
+  name: vscode
 ```
 
 Have the above in a `requirements.yml` file for your project would then allow
