@@ -45,7 +45,7 @@
 - name: extensions| install extensions for {{ user.username }}
   become: true
   become_user: "{{ user.username }}"
-  shell: echo "code --install-extension {{ item }}" | flatpak run --command=bash com.visualstudio.code
+  shell: echo "code --install-extension {{ item }}" | flatpak run --command=bash com.vscodium.codium
   with_items:
     - "{{ user.vscode_extensions }}"
   register: vscode_result
