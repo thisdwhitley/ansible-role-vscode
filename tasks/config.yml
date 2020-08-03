@@ -2,7 +2,7 @@
 - name: config| create settings directory for {{ user.username }}
   become: true
   file:
-    path: '~{{ user.username }}/.var/app/com.vscodium.codium/config/Code/User'
+    path: '~{{ user.username }}/.var/app/com.visualstudio.code/config/Code/User'
     state: directory
     owner: '{{ user.username }}'
     group: '{{ user.username }}'
@@ -12,7 +12,7 @@
   become: true
   template:
     src: settings.json.j2
-    dest: '~{{ user.username }}/.var/app/com.vscodium.codium/config/Code/User/settings.json'
+    dest: '~{{ user.username }}/.var/app/com.visualstudio.code/config/Code/User/settings.json'
     force: false
     owner: '{{ user.username }}'
     group: '{{ user.username }}'
